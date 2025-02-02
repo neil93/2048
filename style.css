@@ -253,7 +253,7 @@ body::before {
         top: 0;
         left: 0;
         width: 100%;
-        height: 22vh;
+        height: 20vh;  /* 減少高度 */
         transform: none;
         background-size: cover;
         background-position: center;
@@ -262,65 +262,94 @@ body::before {
     .container {
         margin: 0;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
         border-radius: 0;
-        padding: 10px;
+        padding: 0;  /* 移除內邊距 */
         display: flex;
         flex-direction: column;
     }
 
     .header {
-        margin: 22vh 0 10px 0;
-        padding: 0 5px;
+        margin: 0;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .scores-container {
-        font-size: 14px;
+        order: 2;  /* 將分數區域放到第二位 */
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .buttons-container {
+        order: 1;  /* 將按鈕區域放到最上方 */
+        position: static;
+        padding: 0;
+        justify-content: center;
+        gap: 15px;
     }
 
     .grid-container {
-        width: 90%;
-        max-width: none;
+        width: 95%;
         aspect-ratio: 1;
         gap: 8px;
         padding: 8px;
-        margin: 0 auto;
+        margin: 10px auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .grid-cell {
-        width: auto;
-        height: auto;
-        aspect-ratio: 1;
-        font-size: 20px;
-        padding: 0;
+        width: 100%;
+        height: 100%;  /* 改為 100% */
+        padding-bottom: 0;  /* 移除 padding-bottom */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        min-height: 60px;  /* 添加最小高度 */
+    }
+
+    /* 移除多餘的定位設定 */
+    .grid-cell span {
+        position: static;
+        transform: none;
+    }
+
+    /* 調整不同數值的字體大小 */
+    .grid-cell[data-value="2"],
+    .grid-cell[data-value="4"] {
+        font-size: 24px;
+    }
+
+    .grid-cell[data-value="8"],
+    .grid-cell[data-value="16"],
+    .grid-cell[data-value="32"],
+    .grid-cell[data-value="64"] {
+        font-size: 22px;
     }
 
     .grid-cell[data-value="128"],
     .grid-cell[data-value="256"],
     .grid-cell[data-value="512"] {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .grid-cell[data-value="1024"],
     .grid-cell[data-value="2048"] {
-        font-size: 16px;
-    }
-
-    .buttons-container {
-        position: fixed;
-        bottom: 15px;
-        left: 0;
-        width: 100%;
-        padding: 0 10px;
-        justify-content: center;
-        gap: 15px;
+        font-size: 18px;
     }
 
     #newGameButton,
     #musicToggleButton {
         padding: 8px 16px;
-        font-size: 16px;
         height: 35px;
+        font-size: 16px;
     }
 
     #musicToggleButton {
@@ -332,52 +361,57 @@ body::before {
 /* iPhone SE, 5, 5S (320px) */
 @media screen and (max-width: 320px) {
     body::before {
-        height: 20vh;
-    }
-    
-    .container {
-        padding: 8px;
+        height: 15vh;  /* 更小的背景圖高度 */
     }
     
     .grid-container {
-        width: 95%;
+        width: 98%;
         gap: 6px;
         padding: 6px;
     }
     
-    .grid-cell {
-        font-size: 16px;
+    .header {
+        padding: 8px;
+        gap: 8px;
     }
-    
+
+    .grid-cell {
+        min-height: 50px;  /* 更小的最小高度 */
+        font-size: 20px;
+    }
+
+    .grid-cell[data-value="2"],
+    .grid-cell[data-value="4"] {
+        font-size: 20px;
+    }
+
+    .grid-cell[data-value="8"],
+    .grid-cell[data-value="16"],
+    .grid-cell[data-value="32"],
+    .grid-cell[data-value="64"] {
+        font-size: 18px;
+    }
+
     .grid-cell[data-value="128"],
     .grid-cell[data-value="256"],
     .grid-cell[data-value="512"] {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .grid-cell[data-value="1024"],
     .grid-cell[data-value="2048"] {
-        font-size: 12px;
-    }
-    
-    .header {
-        margin: 20vh 0 8px 0;
-    }
-    
-    .scores-container {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .buttons-container {
-        bottom: 10px;
         gap: 10px;
     }
 
     #newGameButton,
     #musicToggleButton {
         padding: 6px 12px;
-        font-size: 14px;
         height: 30px;
+        font-size: 14px;
     }
 
     #musicToggleButton {
@@ -388,11 +422,13 @@ body::before {
 /* iPhone 6, 7, 8 (375px) */
 @media screen and (min-width: 321px) and (max-width: 375px) {
     .grid-container {
-        width: 92%;
+        width: 95%;
+        gap: 7px;
+        padding: 7px;
     }
-    
+
     .grid-cell {
-        font-size: 18px;
+        font-size: 22px;
     }
 }
 
@@ -445,62 +481,29 @@ body::before {
 /* iPhone X, XS, 11 Pro (375px but taller) */
 @media screen and (min-width: 375px) and (min-height: 812px) {
     body::before {
-        height: 25vh;
-    }
-    
-    .container {
-        padding: 20px 12px;
+        height: 20vh;
     }
     
     .header {
-        margin: 27vh 0 20px 0;
-    }
-    
-    .buttons-container {
-        bottom: 40px; /* 避開底部手勢區 */
+        padding: 12px;
     }
 }
 
 /* iPhone 6+, 7+, 8+ (414px) */
 @media screen and (min-width: 376px) and (max-width: 414px) {
     body::before {
-        height: 24vh;
-    }
-    
-    .container {
-        padding: 18px 12px;
-    }
-    
-    .grid-container {
-        gap: 12px;
-        padding: 12px;
-    }
-    
-    .grid-cell {
-        font-size: 22px;
+        height: 20vh;
     }
     
     .header {
-        margin: 26vh 0 18px 0;
+        padding: 12px;
     }
 }
 
 /* iPhone 11, XR (414px but taller) */
 @media screen and (min-width: 414px) and (min-height: 896px) {
     body::before {
-        height: 26vh;
-    }
-    
-    .container {
-        padding: 20px 15px;
-    }
-    
-    .header {
-        margin: 28vh 0 20px 0;
-    }
-    
-    .buttons-container {
-        bottom: 40px;
+        height: 22vh;
     }
 }
 
