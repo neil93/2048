@@ -294,55 +294,51 @@ body::before {
     }
 
     .grid-container {
-        width: 95%;
-        aspect-ratio: 1;
-        gap: 8px;
-        padding: 8px;
+        width: 95vmin;  /* 使用視窗寬度或高度的較小值 */
+        height: 95vmin;  /* 保持正方形 */
+        gap: 2vmin;     /* 使用相對單位的間距 */
+        padding: 2vmin;
         margin: 10px auto;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);  /* 確保行高一致 */
+        aspect-ratio: 1;
     }
 
     .grid-cell {
         width: 100%;
-        height: 100%;  /* 改為 100% */
-        padding-bottom: 0;  /* 移除 padding-bottom */
+        height: 100%;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 24px;
-        min-height: 60px;  /* 添加最小高度 */
-    }
-
-    /* 移除多餘的定位設定 */
-    .grid-cell span {
-        position: static;
-        transform: none;
+        font-size: 6vmin;  /* 使用相對單位的字體大小 */
+        padding: 0;
+        aspect-ratio: 1;
     }
 
     /* 調整不同數值的字體大小 */
     .grid-cell[data-value="2"],
     .grid-cell[data-value="4"] {
-        font-size: 24px;
+        font-size: 6vmin;
     }
 
     .grid-cell[data-value="8"],
     .grid-cell[data-value="16"],
     .grid-cell[data-value="32"],
     .grid-cell[data-value="64"] {
-        font-size: 22px;
+        font-size: 5.5vmin;
     }
 
     .grid-cell[data-value="128"],
     .grid-cell[data-value="256"],
     .grid-cell[data-value="512"] {
-        font-size: 20px;
+        font-size: 5vmin;
     }
 
     .grid-cell[data-value="1024"],
     .grid-cell[data-value="2048"] {
-        font-size: 18px;
+        font-size: 4.5vmin;
     }
 
     #newGameButton,
@@ -365,9 +361,10 @@ body::before {
     }
     
     .grid-container {
-        width: 98%;
-        gap: 6px;
-        padding: 6px;
+        width: 98vmin;
+        height: 98vmin;
+        gap: 1.5vmin;
+        padding: 1.5vmin;
     }
     
     .header {
@@ -376,31 +373,30 @@ body::before {
     }
 
     .grid-cell {
-        min-height: 50px;  /* 更小的最小高度 */
-        font-size: 20px;
+        font-size: 5.5vmin;
     }
 
     .grid-cell[data-value="2"],
     .grid-cell[data-value="4"] {
-        font-size: 20px;
+        font-size: 5.5vmin;
     }
 
     .grid-cell[data-value="8"],
     .grid-cell[data-value="16"],
     .grid-cell[data-value="32"],
     .grid-cell[data-value="64"] {
-        font-size: 18px;
+        font-size: 5vmin;
     }
 
     .grid-cell[data-value="128"],
     .grid-cell[data-value="256"],
     .grid-cell[data-value="512"] {
-        font-size: 16px;
+        font-size: 4.5vmin;
     }
 
     .grid-cell[data-value="1024"],
     .grid-cell[data-value="2048"] {
-        font-size: 14px;
+        font-size: 4vmin;
     }
 
     .buttons-container {
