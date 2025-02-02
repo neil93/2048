@@ -11,9 +11,12 @@ class Game {
         this.has1098ScoreTriggered = false;
         this.has1400ScoreTriggered = false;
         this.isMusicOn = true;
+        this.touchStartX = null;
+        this.touchStartY = null;
         this.init();
         this.initAudio();
         this.initMusicToggle();
+        this.initTouchEvents();
     }
 
     init() {
@@ -328,6 +331,57 @@ class Game {
         }
 
         this.init();
+    }
+
+    initTouchEvents() {
+        document.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.touches[0].clientX;
+            this.touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            if (!this.touchStartX || !this.touchStartY) return;
+
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+
+            const deltaX = touchEndX - this.touchStartX;
+            const deltaY = touchEndY - this.touchStartY;
+
+            // 最小滑動距離，避免誤觸
+            const minSwipeDistance = 30;
+
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                // 水平滑動
+                if (Math.abs(deltaX) > minSwipeDistance) {
+                    if (deltaX > 0) {
+                        this.move('ArrowRight');
+                    } else {
+                        this.move('ArrowLeft');
+                    }
+                }
+            } else {
+                // 垂直滑動
+                if (Math.abs(deltaY) > minSwipeDistance) {
+                    if (deltaY > 0) {
+                        this.move('ArrowDown');
+                    } else {
+                        this.move('ArrowUp');
+                    }
+                }
+            }
+
+            // 重置觸控起始點
+            this.touchStartX = null;
+            this.touchStartY = null;
+        }, { passive: true });
+
+        // 防止觸控時頁面滾動
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     }
 }
 

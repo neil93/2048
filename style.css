@@ -237,24 +237,68 @@ body::before {
     }
 }
 
+/* 手機版 RWD 設定 */
 @media (max-width: 480px) {
-    .container {
-        margin-top: 200px;
-        padding: 10px;
+    body {
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: #faf8ef;
     }
 
     body::before {
-        height: 180px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 22vh;
+        transform: none;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .container {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        margin: 22vh 0 10px 0;
+        padding: 0 5px;
+    }
+
+    .scores-container {
+        font-size: 14px;
+    }
+
+    .grid-container {
+        width: 90%;
+        max-width: none;
+        aspect-ratio: 1;
+        gap: 8px;
+        padding: 8px;
+        margin: 0 auto;
     }
 
     .grid-cell {
-        font-size: 24px;
+        width: auto;
+        height: auto;
+        aspect-ratio: 1;
+        font-size: 20px;
+        padding: 0;
     }
 
     .grid-cell[data-value="128"],
     .grid-cell[data-value="256"],
     .grid-cell[data-value="512"] {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .grid-cell[data-value="1024"],
@@ -262,10 +306,129 @@ body::before {
         font-size: 16px;
     }
 
+    .buttons-container {
+        position: fixed;
+        bottom: 15px;
+        left: 0;
+        width: 100%;
+        padding: 0 10px;
+        justify-content: center;
+        gap: 15px;
+    }
+
     #newGameButton,
     #musicToggleButton {
-        padding: 8px 15px;
+        padding: 8px 16px;
         font-size: 16px;
+        height: 35px;
+    }
+
+    #musicToggleButton {
+        width: 35px;
+        padding: 0;
+    }
+}
+
+/* iPhone SE, 5, 5S (320px) */
+@media screen and (max-width: 320px) {
+    body::before {
+        height: 20vh;
+    }
+    
+    .container {
+        padding: 8px;
+    }
+    
+    .grid-container {
+        width: 95%;
+        gap: 6px;
+        padding: 6px;
+    }
+    
+    .grid-cell {
+        font-size: 16px;
+    }
+    
+    .grid-cell[data-value="128"],
+    .grid-cell[data-value="256"],
+    .grid-cell[data-value="512"] {
+        font-size: 14px;
+    }
+
+    .grid-cell[data-value="1024"],
+    .grid-cell[data-value="2048"] {
+        font-size: 12px;
+    }
+    
+    .header {
+        margin: 20vh 0 8px 0;
+    }
+    
+    .scores-container {
+        font-size: 12px;
+    }
+
+    .buttons-container {
+        bottom: 10px;
+        gap: 10px;
+    }
+
+    #newGameButton,
+    #musicToggleButton {
+        padding: 6px 12px;
+        font-size: 14px;
+        height: 30px;
+    }
+
+    #musicToggleButton {
+        width: 30px;
+    }
+}
+
+/* iPhone 6, 7, 8 (375px) */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    .grid-container {
+        width: 92%;
+    }
+    
+    .grid-cell {
+        font-size: 18px;
+    }
+}
+
+/* 手機橫向模式 */
+@media screen and (orientation: landscape) and (max-height: 480px) {
+    body::before {
+        height: 100%;
+        width: 25vw;
+        left: 0;
+        top: 0;
+        background-size: cover;
+    }
+    
+    .container {
+        flex-direction: row;
+        padding: 5px;
+        height: 100vh;
+    }
+    
+    .header {
+        margin: 0;
+        padding: 0 5px;
+        width: 20%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .grid-container {
+        width: 75%;
+        height: 95vh;
+        margin: auto 0;
+    }
+    
+    .buttons-container {
+        position: static;
+        flex-direction: column;
     }
 }
 
@@ -276,5 +439,116 @@ body::before {
 
     body::before {
         height: 150px;
+    }
+}
+
+/* iPhone X, XS, 11 Pro (375px but taller) */
+@media screen and (min-width: 375px) and (min-height: 812px) {
+    body::before {
+        height: 25vh;
+    }
+    
+    .container {
+        padding: 20px 12px;
+    }
+    
+    .header {
+        margin: 27vh 0 20px 0;
+    }
+    
+    .buttons-container {
+        bottom: 40px; /* 避開底部手勢區 */
+    }
+}
+
+/* iPhone 6+, 7+, 8+ (414px) */
+@media screen and (min-width: 376px) and (max-width: 414px) {
+    body::before {
+        height: 24vh;
+    }
+    
+    .container {
+        padding: 18px 12px;
+    }
+    
+    .grid-container {
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .grid-cell {
+        font-size: 22px;
+    }
+    
+    .header {
+        margin: 26vh 0 18px 0;
+    }
+}
+
+/* iPhone 11, XR (414px but taller) */
+@media screen and (min-width: 414px) and (min-height: 896px) {
+    body::before {
+        height: 26vh;
+    }
+    
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .header {
+        margin: 28vh 0 20px 0;
+    }
+    
+    .buttons-container {
+        bottom: 40px;
+    }
+}
+
+/* 通用橫向模式優化 */
+@media screen and (orientation: landscape) and (max-height: 414px) {
+    body::before {
+        height: 30vh;
+        background-size: contain;
+    }
+    
+    .container {
+        padding: 10px;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .header {
+        margin: 0;
+        width: 25%;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .grid-container {
+        width: 70%;
+        height: 80vh;
+        margin: 0;
+    }
+    
+    .buttons-container {
+        position: static;
+        flex-direction: column;
+    }
+}
+
+/* 摺疊手機展開模式 */
+@media screen and (min-width: 640px) and (max-width: 920px) {
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .grid-container {
+        max-width: 500px;
+    }
+    
+    .grid-cell {
+        font-size: 24px;
     }
 } 
