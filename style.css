@@ -1,0 +1,280 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #faf8ef;
+    position: relative;
+    --bg-image: url('./images/sans-undertale-550x309.jpg');
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 550px;
+    height: 309px;
+    background-image: var(--bg-image);
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    transition: background-image 0.5s ease;
+}
+
+.container {
+    width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin: 0 400px;
+    border: 2px solid #bbada0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.scores-container {
+    font-size: 20px;
+}
+
+.score, .best-score {
+    margin: 5px 0;
+}
+
+#newGameButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #8f7a66;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#newGameButton:hover {
+    background-color: #7f6a56;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 15px;
+    background-color: #bbada0;
+    padding: 15px 20px;
+    border-radius: 6px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.grid-cell {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(238, 228, 218, 0.35);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #776e65;
+    border: 2px solid rgba(238, 228, 218, 0.35);
+}
+
+.grid-cell[data-value="2"] {
+    background-color: #eee4da;
+}
+
+.grid-cell[data-value="4"] {
+    background-color: #ede0c8;
+}
+
+.grid-cell[data-value="8"] {
+    background-color: #f2b179;
+    color: white;
+}
+
+.grid-cell[data-value="16"] {
+    background-color: #f59563;
+    color: white;
+}
+
+.grid-cell[data-value="32"] {
+    background-color: #f67c5f;
+    color: white;
+}
+
+.grid-cell[data-value="64"] {
+    background-color: #f65e3b;
+    color: white;
+}
+
+.grid-cell[data-value="128"] {
+    background-color: #edcf72;
+    color: white;
+    font-size: 30px;
+}
+
+.grid-cell[data-value="256"] {
+    background-color: #edcc61;
+    color: white;
+    font-size: 30px;
+}
+
+.grid-cell[data-value="512"] {
+    background-color: #edc850;
+    color: white;
+    font-size: 30px;
+}
+
+.grid-cell[data-value="1024"] {
+    background-color: #edc53f;
+    color: white;
+    font-size: 25px;
+}
+
+.grid-cell[data-value="2048"] {
+    background-color: #edc22e;
+    color: white;
+    font-size: 25px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#musicToggleButton {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #8f7a66;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#musicToggleButton:hover {
+    background-color: #7f6a56;
+}
+
+/* RWD 設定 */
+@media (max-width: 1400px) {
+    .container {
+        margin: 0 200px;  /* 縮小左右邊距 */
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        margin: 350px auto 0;
+        width: 90%;
+        max-width: 600px;
+    }
+
+    body::before {
+        top: 0;
+        transform: none;
+        width: 100%;
+        height: 300px;
+        background-position: center top;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin-top: 250px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);  /* 使用相對寬度 */
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .grid-cell {
+        width: auto;  /* 自動適應寬度 */
+        height: 0;
+        padding-bottom: 100%;  /* 保持正方形比例 */
+        position: relative;
+    }
+
+    .grid-cell > * {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .scores-container {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin-top: 200px;
+        padding: 10px;
+    }
+
+    body::before {
+        height: 180px;
+    }
+
+    .grid-cell {
+        font-size: 24px;
+    }
+
+    .grid-cell[data-value="128"],
+    .grid-cell[data-value="256"],
+    .grid-cell[data-value="512"] {
+        font-size: 20px;
+    }
+
+    .grid-cell[data-value="1024"],
+    .grid-cell[data-value="2048"] {
+        font-size: 16px;
+    }
+
+    #newGameButton,
+    #musicToggleButton {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+}
+
+@media (max-height: 800px) {
+    .container {
+        margin-top: 150px;
+    }
+
+    body::before {
+        height: 150px;
+    }
+} 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16宮格合併數字遊戲</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="scores-container">
+                <div class="score">分數：<span id="score">0</span></div>
+                <div class="best-score">最高分：<span id="bestScore">0</span></div>
+            </div>
+            <div class="buttons-container">
+                <button id="musicToggleButton">🔊</button>
+                <button id="newGameButton">新遊戲</button>
+            </div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-cell" data-row="0" data-col="0"></div>
+            <div class="grid-cell" data-row="0" data-col="1"></div>
+            <div class="grid-cell" data-row="0" data-col="2"></div>
+            <div class="grid-cell" data-row="0" data-col="3"></div>
+            <div class="grid-cell" data-row="1" data-col="0"></div>
+            <div class="grid-cell" data-row="1" data-col="1"></div>
+            <div class="grid-cell" data-row="1" data-col="2"></div>
+            <div class="grid-cell" data-row="1" data-col="3"></div>
+            <div class="grid-cell" data-row="2" data-col="0"></div>
+            <div class="grid-cell" data-row="2" data-col="1"></div>
+            <div class="grid-cell" data-row="2" data-col="2"></div>
+            <div class="grid-cell" data-row="2" data-col="3"></div>
+            <div class="grid-cell" data-row="3" data-col="0"></div>
+            <div class="grid-cell" data-row="3" data-col="1"></div>
+            <div class="grid-cell" data-row="3" data-col="2"></div>
+            <div class="grid-cell" data-row="3" data-col="3"></div>
+        </div>
+    </div>
+    <!-- 添加音訊元素 -->
+    <audio id="bgMusic" loop>
+        <source src="./music/undertale-start.mp3" type="audio/mp3">
+    </audio>
+    <audio id="bgMusicAfter500" loop>
+        <source src="./music/undertale-megalovania.mp3" type="audio/mp3">
+    </audio>
+    <audio id="bgMusicAfter1098" loop>
+        <source src="./music/Undertale - Gaster's Theme Remix 2-(p).mp3" type="audio/mp3">
+    </audio>
+    <audio id="bgMusicAfter1400" loop>
+        <source src="./music/your-1400-music.mp3" type="audio/mp3">
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html> 
