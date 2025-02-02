@@ -51,5 +51,20 @@
         <source src="./music/your-1400-music.mp3" type="audio/mp3">
     </audio>
     <script src="script.js"></script>
+    <script>
+        function initAudio() {
+            // 添加一個點擊事件監聽器到整個文檔
+            document.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play().catch(function(error) {
+                        console.log("播放失敗:", error);
+                    });
+                }
+            }, { once: true }); // once: true 確保事件只觸發一次
+        }
+
+        // 當頁面加載完成時初始化音頻
+        window.addEventListener('load', initAudio);
+    </script>
 </body>
 </html> 
